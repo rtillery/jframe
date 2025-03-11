@@ -71,7 +71,7 @@ def sync_files(remote_path, local_path):
         if local_file not in remote_files:
             os.remove(os.path.join(local_path, local_file))
             files_removed += 1
-    
+
 def main():
     parser = argparse.ArgumentParser(description='Synchronize a MEGA directory to a local directory.')
     parser.add_argument('email', help='MEGA account email')
@@ -88,6 +88,7 @@ def main():
     finally:
         mega_logout()
         print(f"[jframe.py] ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) Synchronization complete. {files_added} files added, {files_removed} files removed")
+        return 188 if files_added > 0 or files_removed > 0 else 0
 
 if __name__ == '__main__':
     main()
